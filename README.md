@@ -22,13 +22,13 @@ We welcome contributions from the community! We follow the Fork & Pull Request w
 
 2. **Clone Your Fork**:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/research-timeline-reminder.git
+   git clone https://github.com/Tonative/remind-me.git
    cd research-timeline-reminder
    ```
 
 3. **Add the Upstream Remote**:
    ```bash
-   git remote add upstream https://github.com/organization/research-timeline-reminder.git
+   git remote add upstream https://github.com/Tonative/remind-me.git
    ```
 
 ### Step 2: Create a Feature Branch
