@@ -1,7 +1,9 @@
-
 name: Automated Project Reminders
 
 on:
+  push:
+    branches:
+      - feature/devTemidayo
   schedule:
     - cron: "0 9 * * *"  # Every day at 9 AM UTC
   workflow_dispatch:      # Allow manual testing from Actions tab
