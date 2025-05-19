@@ -1,8 +1,9 @@
 name: Comment on Project Issues
 
 on:
-  workflow_dispatch:
+  push:
     branches: [dev-chinenye]
+  workflow_dispatch:
   schedule:
     - cron: "0 8 * * *"
 
