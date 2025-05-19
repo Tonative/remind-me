@@ -1,9 +1,9 @@
 name: Automated Issue Reminder
 
 on:
-schedule:
-  - cron: '0 10 * * *' #Runs at 10AM 
-workflow_dispatch: #Allows manual triggering
+  schedule:
+    - cron: '0 10 * * *' #Runs at 10AM 
+  workflow_dispatch: #Allows manual triggering
 
 jobs:
   check_issues:
