@@ -21,9 +21,10 @@ def main():
 
     # Fetch open issues
     issues = repo.get_issues(state='open')
+    print(f"🔎 Found {issues.totalCount} open issue(s).")
     for issue in issues:
         body = issue.body or ""
-        
+
         # Extract YYYY-MM-DD after "Start Date:" / "End Date:"
         start_match = re.search(r"Start\s*Date:\s*(\d{4}-\d{2}-\d{2})", body, re.IGNORECASE)
         end_match   = re.search(r"End\s*Date:\s*(\d{4}-\d{2}-\d{2})",   body, re.IGNORECASE)
