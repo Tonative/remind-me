@@ -1,0 +1,19 @@
+name: Automated Issue Reminder
+
+on:
+schedule:
+  - cron: '0 10 * * *' #Runs at 10AM 
+workflow_dispatch: #Allows manual triggering
+
+jobs:
+  check_issues:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Run issue reminder script
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python3 .github/secrets/issue_reminder.py
