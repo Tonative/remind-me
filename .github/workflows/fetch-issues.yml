@@ -1,21 +1,16 @@
-name: Comment on Project Issues
+name: Fetch Repository Issues
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 7 * * *' 
-
-
-permissions:
-  issues: write
-  contents: read
 
 jobs:
-  comment-on-issue:
+  fetch-issues:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Comment on issues
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Retrieve Issues
         uses: actions/github-script@v7
         with:
           script: |
@@ -29,60 +24,6 @@ jobs:
               }
             );
 
-            const today = new Date();
-            const oneDay = 24 * 60 * 60 * 1000;
-            const todayStr = today.toISOString().split('T')[0];
-
             for (const issue of issues) {
-              try {
-                const body = issue.body || "";
-
-                const startMatch = body.match(/Start Date:\s*(\d{4}-\d{2}-\d{2})/i);
-                const endMatch = body.match(/End Date:\s*(\d{4}-\d{2}-\d{2})/i);
-
-                const startDateStr = startMatch?.[1];
-                const endDateStr = endMatch?.[1];
-
-                if (!startDateStr && !endDateStr) {
-                  console.log(`Skipped Issue #${issue.number} cos no start or end date found.`);
-                  continue;
-                }
-
-                let comment = null;
-
-                if (startDateStr === todayStr) {
-                  comment = `Note that this task starts today (${startDateStr}).`;
-                }
-
-                if (endDateStr) {
-                  const formatTime = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate());
-                  const todayDate = formatTime(new Date());
-                  const endDate = formatTime(new Date(endDateStr));
-
-                  const diffInDays = Math.floor((endDate - todayDate) / oneDay);
-
-
-                  if (diffInDays === 0) {
-                    comment = `Note: this task is scheduled to end **today** (${endDateStr}).`;
-                  } else if (diffInDays === -1) {
-                    comment = `This task was due **yesterday** (${endDateStr}) and is still open.`;
-                  } else if (diffInDays >= -1 && diffInDays <= 2) {
-                    comment = `Gentle reminder: This task is due in **${diffInDays}** day(s) (scheduled for ${endDateStr}).`;
-                  }
-                }
-
-                if (comment) {
-                  await github.rest.issues.createComment({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    issue_number: issue.number,
-                    body: comment
-                  });
-                  console.log(`Commented on issue #${issue.number}`);
-                } else {
-                  console.log(`ℹIssue #${issue.number} no event today.`);
-                }
-              } catch (err) {
-                console.error(`Error processing issue #${issue.number}: ${err.message}`);
-              }
+              console.log(`#${issue.number}: ${issue.title} → ${issue.html_url}`);
             }
