@@ -1,16 +1,16 @@
-name: Automated reminder bot
+name: Automated reminder task
 
 on:
+  workflow_dispatch:     # Also allows manual triggering from GitHub
   schedule:
     - cron: "0 8 * * *"  # Runs every day at 8 AM UTC
-  workflow_dispatch:     # Also allows manual triggering from GitHub
 
 jobs:
   run-reminder:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -25,4 +25,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python scripts/issue_reminder.py
+        run: python scripts/reminders.py
