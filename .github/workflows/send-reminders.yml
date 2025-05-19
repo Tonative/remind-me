@@ -43,6 +43,7 @@ jobs:
 
                 const startDateStr = startMatch?.[1];
                 const endDateStr = endMatch?.[1];
+                console.log(body);
 
                 if (!startDateStr && !endDateStr) {
                   console.log(`Skipped Issue #${issue.number} cos no start or end date found.`);
