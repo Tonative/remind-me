@@ -1,19 +1,28 @@
-name: Automated Issue Reminder
+name: Automated reminder bot
 
 on:
   schedule:
-    - cron: '0 10 * * *' #Runs at 10AM 
-  workflow_dispatch: #Allows manual triggering
+    - cron: "0 8 * * *"  # Runs every day at 8 AM UTC
+  workflow_dispatch:     # Also allows manual triggering from GitHub
 
 jobs:
-  check_issues:
+  run-reminder:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Run issue reminder script
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python3 .github/secrets/issue_reminder.py
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run reminder script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python scripts/issue_reminder.py
