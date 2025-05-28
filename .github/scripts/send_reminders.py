@@ -143,6 +143,8 @@ def send_reminders():
         remind = False
         comment_parts = []
         if start_date:
+            print(f"Start date for issue #{issue_number}: {start_date}")
+            print(f"Today: {today}")
             if today == start_date - timedelta(days=2):
                 remind = True
                 comment_parts.append(f"Project starts in 2 days on **{start_date}**.")
@@ -150,6 +152,7 @@ def send_reminders():
                 remind = True
                 comment_parts.append(f"Project starts tomorrow (**{start_date}**).")
         if end_date:
+            print(f"End date for issue #{issue_number}: {end_date}")
             if today == end_date - timedelta(days=1):
                 remind = True
                 comment_parts.append(f"Project ends tomorrow (**{end_date}**).")
