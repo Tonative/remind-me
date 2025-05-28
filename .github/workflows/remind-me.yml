@@ -26,6 +26,8 @@ jobs:
 
       - name: Run reminder script
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPO: ${{ github.repository }}
+          GITHUB_ORG: emmanuel5050            
+          GITHUB_PROJECT_NUMBER: "1" 
         run: python .github/scripts/send_reminders.py
