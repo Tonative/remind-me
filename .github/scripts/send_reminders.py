@@ -104,6 +104,7 @@ def get_project_item_dates(project_item_id):
 
 
 def post_comment(issue_number, message):
+    print(f"running post comment method for issue: #{issue_number}")
     url = f"https://api.github.com/repos/{REPO}/issues/{issue_number}/comments"
     res = requests.post(url, headers={
         "Authorization": f"token {TOKEN}",
