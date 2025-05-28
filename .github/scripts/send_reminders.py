@@ -158,7 +158,7 @@ def send_reminders():
                 comment_parts.append(f"Project ends today (**{end_date}**).")
 
         if remind:
-            comment = f"{assignee_mention}⏰ Reminder for issue #{issue_number}:\n" + "\n".join(comment_parts)
+            comment = f"{assignee_mention} ⏰ Reminder for issue #{issue_number}:\n" + "\n".join(comment_parts)
             post_comment(issue_number, comment)
 
 

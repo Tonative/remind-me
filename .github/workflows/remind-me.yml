@@ -8,6 +8,9 @@ on:
     - cron: "0 9 * * *"  # Every day at 9 AM UTC
   workflow_dispatch:      # Allow manual testing from Actions tab
 
+permissions:
+  issues: write
+  
 jobs:
   issue-reminder:
     runs-on: ubuntu-latest
