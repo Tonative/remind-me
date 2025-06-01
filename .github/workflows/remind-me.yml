@@ -30,7 +30,7 @@ jobs:
 
       - name: Run reminder script
         env:
-          GITHUB_TOKEN: ${{ secrets.FINE_GRAINED_PAT }} 
+          GITHUB_TOKEN: ${{ secrets.CLASSIC_PAT }}
           GITHUB_REPO: ${{ github.repository }}
           GITHUB_ORG: "emmanuel5050"            
           GITHUB_PROJECT_NUMBER: "1" 
