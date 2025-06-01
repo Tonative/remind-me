@@ -114,7 +114,10 @@ def post_comment(issue_number, message):
     print(f"Posted comment on issue #{issue_number}")
 
 def send_reminders():
-    today = datetime.utcnow().date()
+    from datetime import datetime, timezone
+
+    today = datetime.now(timezone.utc).date()
+
     issues = get_open_issues()
 
     for issue in issues:
