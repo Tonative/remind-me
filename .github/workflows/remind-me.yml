@@ -11,7 +11,7 @@ on:
 permissions:
   issues: write
   contents: read
-  project: write
+  projects: write
   
 jobs:
   issue-reminder:
