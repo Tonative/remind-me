@@ -107,7 +107,7 @@ def post_comment(issue_number, message):
     print(f"running post comment method for issue: #{issue_number}")
     url = f"https://api.github.com/repos/{REPO}/issues/{issue_number}/comments"
     res = requests.post(url, headers={
-        "Authorization": f"token {TOKEN}",
+        "Authorization": f"Bearer {TOKEN}",
         "Accept": "application/vnd.github.v3+json"
     }, json={"body": message})
     res.raise_for_status()
