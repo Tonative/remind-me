@@ -11,7 +11,6 @@ on:
 permissions:
   issues: write
   contents: read
-  projects: write
   
 jobs:
   issue-reminder:
@@ -31,7 +30,7 @@ jobs:
 
       - name: Run reminder script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FINE_GRAINED_PAT }} 
           GITHUB_REPO: ${{ github.repository }}
           GITHUB_ORG: "emmanuel5050"            
           GITHUB_PROJECT_NUMBER: "1" 
